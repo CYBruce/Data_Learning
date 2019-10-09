@@ -68,130 +68,158 @@
 
 \begin{enumerate}
   \setlength{\itemsep}{3\parskip}
-\item Suppose the data are linearly separable. The optimization problem of SVM is  \begin{equation}
-    \tag{P}
+\item The log-likelihood of the softmax regression model can be writen as  
+\begin{equation*}
+    % \tag{P}
     \begin{aligned}
-      &\minimize_{\bw, b}& &\frac12 \|\bw\|_2^2\\
-      &\st& &y_i(\bw^{\T}\bx_i + b) \geq 1, \quad i = 1, \dots, l,
+      l 
+      &= \sum_{i = 1}^m \log \frac{\exp (\boldsymbol{\theta}^T_{y^{(i)}} \boldsymbol{x}^{(i)}+b_{y^{(i)} })}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol{x}^{(i)}+b_j)}\\
+      &= \sum_{i = 1}^m [\boldsymbol{\theta}^T_{y^{(i)}} \boldsymbol{x}^{(i)}+b_{y^{(i)}} - \log (\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol{x}^{(i)}+b_j))]\\
     \end{aligned}
     \label{eq:svm:p}
-  \end{equation}
-  and let $(\bw^{\star}, b^{\star})$ denote its optimal solution.
+  \end{equation*}
+
   \begin{enumerate}
-  \item Show that
+  \item Evaluate the derivation of $b_l$:
     \begin{equation*}
-      b^{\star} = -\frac12 \left(\max_{i\colon y_i = -1}\bw^{\star\T}\bx_i + \min_{i\colon y_i = 1}\bw^{\star\T}\bx_i\right).
+      \frac{\partial l}{\partial b_l} = \sum_i^m [\1 (y^{(i)}=l) - \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol{x}^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol{x}^{(i)}+b_j)}]
     \end{equation*}
-    \noindent The corresponding Lagrange dual problem is given by
-  \begin{equation}
-    \tag{D}
-    \begin{aligned}
-      &\maximize_{\balpha}& &\sum_{i = 1}^l \alpha_i - \frac12\sum_{i = 1}^l\sum_{j = 1}^l \alpha_i\alpha_jy_iy_j \langle \bx_i, \bx_j\rangle\\
-      &\st& &\alpha_i \geq 0, \quad i = 1, \dots, l,\\
-      && &\sum_{i = 1}^l \alpha_iy_i = 0.
-    \end{aligned}
-    \label{eq:svm:d}
-  \end{equation}
-   Suppose the optimal solution of \eqref{eq:svm:d} is $\balpha^{\star} = (\alpha_1^{\star}, \cdots, \alpha_l^{\star})^{\T}$, from the KKT conditions we know that
-  \begin{equation}
-    \begin{gathered}
-      \bw^{\star} = \sum_{i = 1}^{l} \alpha_i^{\star} y_i \bx_i,\\
-      \sum_{i = 1}^l \alpha_i^{\star}\left[y_i(\bw^{\star\T}\bx_i + b^{\star}) - 1\right] = 0.
-    \end{gathered}
-    \label{eq:kkt}
-  \end{equation}
+    \noindent The $\1 (y^{(i)}=l)$ function is defined as:
+    \begin{equation*}
+      \1(x=l)=
+      \left\{
+      \begin{aligned}
+        1, &\quad\text{if}~ x = l,\\
+        0, &\quad\text{if}~ x \neq l.
+      \end{aligned}
+      \right.
+    \end{equation*}
+   
   \item
-  Based on \eqref{eq:kkt}, verify that
+  If we have set the biases to their optimal values, there exists $\frac{\partial l}{\partial b_l} = 0$.
+  Based on (a):
   \begin{equation*}
-    \frac12 \|\bw^{\star}\|_2^2 = \sum_{i = 1}^l \alpha^{\star}_i - \frac12\sum_{i = 1}^l\sum_{j = 1}^l \alpha^{\star}_i\alpha^{\star}_jy_iy_j \langle \bx_i, \bx_j\rangle = \frac12\sum_{i = 1}^l \alpha^{\star}_i.
+    \sum_i^m \1 (y^{(i)}=l) = \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol x^{(i)}+b_j)}
+  \end{equation*}
+  Based on the definition of $\hat{P}_y (l)$:
+  \begin{equation*}
+    \begin{aligned}
+    \hat{P}_y (l) 
+    &= \frac{1}{m} \sum_i^m \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}]\\
+    &= \frac{1}{m} \sum_i^m \sum_{\boldsymbol x \in \boldsymbol X} \frac{\exp(\boldsymbol \theta^T_l \boldsymbol x+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}]\1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \frac{1}{m} \sum_i^m \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \frac{1}{m} \sum_i^m \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} \hat{P}_{\boldsymbol x} (\boldsymbol x) 
+    \end{aligned}
   \end{equation*}
   \end{enumerate}  
 
-\item When the data are not linearly separable, consider the soft-margin SVM given by
-  \begin{equation}
-    \begin{aligned}
-      &\minimize_{\bw, b, \bxi}& &\frac12 \|\bw\|_2^2 + C\sum_{i = 1}^l \xi_i\\
-      &\st& & \xi_i \geq 0, \quad i = 1, \dots, l,\\
-      && &y_i(\bw^{\T}\bx_i + b) \geq 1 - \xi_i, \quad i = 1, \dots, l,
-    \end{aligned}
-    \label{eq:svm:soft-margin}
-  \end{equation}
-  where $C > 0$ is a fixed parameter.
-  
+\item
   \begin{enumerate}
   \item
-    Show that \eqref{eq:svm:soft-margin} is equivalent\footnote{Two optimization problems are called equivalent if from a solution of one, a solution of the other is readily found, and vice versa.} to 
-    \begin{equation}
-      \minimize_{\bw, b} \quad\frac12 \|\bw\|_2^2 + C \sum_{i = 1}^l \ell(y_i, \bw^{\T}\bx_i + b),
-      \label{eq:svm:hinge}
-    \end{equation}
-    where $\ell(\cdot, \cdot)$ is the hinge loss defined by $\ell(y, z) \defeq \max\{1 - yz, 0\}$.
-
-    
-  \item
-    Show that the objective function of \eqref{eq:svm:hinge}, denoted by $f(\bw, b)$, is convex, i.e.,
+    The MLE is to solve
     \begin{equation*}
-      f(\theta\bw_1 + (1-\theta)\bw_2, \theta b_1 + (1-\theta)b_2) \leq \theta f(\bw_1, b_1)  + (1-\theta)f(\bw_2, b_2).
+      \maximize_{\mu} \prod_i^n P(x_i \mid \mu)
     \end{equation*}
-    for all $\bw_1, \bw_2 \in \mathbb{R}^n, b_1, b_2 \in \mathbb{R}$, and $\theta \in [0, 1]$.
+    which is equal to:
+    \begin{equation*}
+      \begin{aligned}
+      &\maximize_{\mu} \sum_i^n \log P(x_i \mid \mu)\\
+      \Rightarrow &\maximize_{\mu} \sum_i^n (\log \frac{1}{\sqrt{2 \pi \delta^2}} - \frac{(x - \mu)^2}{2 \delta^2})\\
+      \Rightarrow &\minimize_{\mu} \sum_i^n (x_i - \mu)^2
+      \end{aligned}
+    \end{equation*}
+    Here we define $f(\mu) = \sum_i^n (x_i - \mu)^2$ to find the $\mu^*$. There exists $\frac{\partial f}{\partial \mu} = 2\sum_i^n (\mu - x_i) = 0$ when $\mu$=$\mu^*$ .\\
+    Then $\mu^* = \frac{\sum_i^n x_i}{n}$.
+    %  \defeq \max\{1 - yz, 0\}$.
+
+  \item
+    The MAP problem can be writen as:
+    \begin{equation*}
+      \maximize_{\mu} P(\mu \mid x_1,...,x_n)
+    \end{equation*}
+    which is equal to:
+    \begin{equation*}
+      \begin{aligned}
+      &\maximize_{\mu} P(\mu\mid x_1,...,x_n)\\
+      \Rightarrow &\maximize_{\mu} P(x_1,...,x_n\mid\mu)P(\mu)\\
+      \Rightarrow &\maximize_{\mu} \prod_i^n P(x_i\mid\mu)P(\mu)\\
+      \Rightarrow &\maximize_{\mu} \sum_i^n \log P(x_i\mid\mu) + \log P(\mu)\\
+      \Rightarrow &\maximize_{\mu} \sum_i^n -\frac{(x_i-\mu)^2}{2\delta^2} - \log \sqrt{2\pi\theta^2} - \frac{(\mu - \nu)^2}{2 \delta^2}\\
+      \Rightarrow &\minimize_{\mu} \sum_i^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}\\
+      \end{aligned}
+    \end{equation*}
+    Here we define $g(\mu) = \sum_i^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}$ to find the $\mu^*$. There exists $\frac{\partial g}{\partial \mu} = \sum_i^n \frac{\mu(\mu-x_i)}{\delta^2} + \frac{\mu(\mu - \nu)}{\theta^2} = 0$ when $\mu$=$\mu^*$ .\\
+    Then $\mu^* = \frac{\sum_i^n x_i + \delta^2\nu}{\theta^2n+\delta^2}$.\\
+    When $n \rightarrow \infty$, $\mu^*$ for MLE and MAP is equal.
   \end{enumerate}
-\item You may find \url{https://en.wikibooks.org/wiki/LaTeX} useful.
-  \begin{enumerate}
-    \item Writing \LaTeX\ online may be easier for beginners:
-        \begin{enumerate}
-        \item ShareLaTeX: \url{https://www.sharelatex.com/}.
-        \item Overleaf: \url{https://www.overleaf.com/}.
-        \end{enumerate}
-    \end{enumerate}
-  \item You may need aligned equations for your homework, here are several examples:
-    
-    Total propability rule:
+
+% The solution of 1.3
+\item First, the square error can be written as 
   \begin{equation*}
     \begin{aligned}
-      \Prob(\rvx = x)
-      &= \sum_{y \in \mathcal{Y}} \Prob(\rvx = x, \rvy = y)\\
-      &= \sum_{y \in \mathcal{Y}} \Prob(\rvx = x| \rvy = y) \Prob(\rvy = y),\\
+      J(\boldsymbol \Theta) 
+      &= \frac{1}{2} \sum_{i = 1}^m \sum_{j = 1}^l (({\boldsymbol \Theta}^T \boldsymbol{x}^{(i)})_j - \boldsymbol{y}_j^{(i)})^2\\
+      &= \frac{1}{2} \sum_{i = 1}^m \sum_{j = 1}^l (\sum_{k=1}^n \boldsymbol{\Theta}_{kj} \boldsymbol{x}^{(i)}_k - \boldsymbol{y}_j^{(i)})^2
     \end{aligned}
   \end{equation*}
-  or
+  In order to compute the solution, it needs to find the minimum $J(\Theta)$ where $\frac{\partial J}{\partial \Theta}=0$. To find the solution, the derivative is:
   \begin{equation*}
     \begin{aligned}
-      &\quad~  P_{\rvx}(x)\\
-      &= \sum_{y \in \mathcal{Y}} P_{\rvx\rvy}(x,y)\\
-      &= \sum_{y \in \mathcal{Y}} P_{\rvx|\rvy}(x|y)P_{\rvy}(y).\\
+      \frac{\partial J}{\partial \boldsymbol{\Theta}_{\alpha \beta}}
+      &= \sum_{i = 1}^m (\boldsymbol{x}_\alpha^{(i)}(\sum_k^n \boldsymbol{\Theta}_{k \beta} \boldsymbol{x}_k^{(i)}-\boldsymbol{y}_{\beta}^{(i)}))\\
+      &= \sum_{i = 1}^m (\boldsymbol{x}_\alpha^{(i)}(\boldsymbol{\Theta}_\beta^T \boldsymbol{x}^{(i)}-\boldsymbol{y}_{\beta}^{(i)}))\\
     \end{aligned}
   \end{equation*}
-  Indicator function:
+  Then we have $\frac{\partial J}{\partial \Theta}=0$, which means:
   \begin{equation*}
-    \1_A(\omega)=
-    \left\{
     \begin{aligned}
-      1, &\quad\text{if}~ \omega \in A,\\
-      0, &\quad\text{if}~ \omega \notin A.
+      \sum_{i = 1}^m \boldsymbol{x}_\alpha^{(i)}(\boldsymbol{\Theta}_\beta^T \boldsymbol{x}^{(i)}) 
+      &= \sum_{i = 1}^m \boldsymbol{x}^{(i)}_\alpha \boldsymbol{y}_{\beta}^{(i)})\\
+      \Rightarrow \boldsymbol{X}_\alpha^T \boldsymbol{X} \boldsymbol{\Theta}_\beta &= \boldsymbol{X}_\alpha^T \boldsymbol{Y}_{\beta}\\
+      \Rightarrow \boldsymbol{X}^T \boldsymbol{X} \boldsymbol{\Theta}_\beta &= \boldsymbol{X}^T \boldsymbol{Y}_{\beta}\\
     \end{aligned}
-    \right.
+  \end{equation*}
+  So, for $\beta \in (1,2,...,l)$ we have
+  \begin{equation*}
+    \boldsymbol{\Theta}_\beta = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{y}_{\beta}
+  \end{equation*}
+  Also,
+  \begin{equation*}
+    \boldsymbol{\Theta} = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{y}
   \end{equation*}
 
-  \item You may need to add figure and source codes in your homework. Figure \ref{fig:1} is an example that compares the empirical distribution (histogram) and probability density function of the Gaussian random variable.
-    \begin{figure}[htbp]
-      \centering
-      \includegraphics[width = 0.8\textwidth]{pdf_normal.eps}
-      \caption{Gaussian PDF and histogram of samples}
-      \label{fig:1}
-    \end{figure}
 
-  The source code to plot Figure \ref{fig:1} could be found in Appendix \ref{sec:a:code}. Here are the core codes:
-  \lstinputlisting[firstline=4,lastline=4, firstnumber=4]{matlabscript.m}
-  \lstinputlisting[firstline=6,lastline=7, firstnumber=6]{matlabscript.m}
-  To understand line 6, note that if we have $n$ samples of $\rvx$ denoted by $x^{(i)}, i = 1, 2, \cdots, n$, then the probability density function $p_{\rvx}$ could be estimated as
-  \begin{equation*}
-    \begin{aligned}
-      p_{\rvx}(x_0) &= \left.\frac{\mathrm{d}}{\mathrm{d}x} \Prob(\rvx \leq x) \right|_{x = x_0} \\
-      &\approx \frac{\Prob(x_0 - \Delta x < \rvx \leq x_0)}{\Delta x}\\
-      &\approx \frac{1}{n\Delta x} \sum_{i = 1}^n \1_{x^{(i)} \in (x_0 - \Delta x, x_0]}.
-    \end{aligned}    
-  \end{equation*}
-    
+% The solution of 1.4
+\item Based on $\Sigma$ is symmetrical as well as the properties of matrix trace, the multivariate normal distribution can be written as
+\begin{equation*}
+  \begin{aligned}
+    P_{\boldsymbol y}(\boldsymbol y;\boldsymbol \mu,\boldsymbol \Sigma)
+    &= \frac{1}{(2\pi)^{\frac{n}{2}}|\boldsymbol \Sigma|^{\frac{1}{2}}} \exp(-\frac{1}{2}(\boldsymbol{y}-\boldsymbol \mu)^T {\boldsymbol \Sigma}^{-1}(\boldsymbol y-\boldsymbol \mu))\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2}(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1}-\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}) (\boldsymbol{y}-\boldsymbol{\mu}))\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2}(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y}-\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y} - \boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu} + \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2} tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y}-\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y} - \boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu} + \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2} (tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y})-tr(\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y}) - tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu}) + tr(\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu}))\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(tr({\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\boldsymbol{y} -\frac{1}{2}tr({\boldsymbol \Sigma}^{-1} \boldsymbol{y} \boldsymbol{y}^T)-\frac{1}{2} \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
+  \end{aligned}
+\end{equation*}
+Thus, we can see that multivariate normal distribution is an exponential family with:
+\begin{equation*}
+  \begin{aligned}
+    \eta &= 
+    \begin{pmatrix}
+      {\boldsymbol \Sigma}^{-1}\boldsymbol{\mu}\\
+      -\frac{1}{2}{\boldsymbol \Sigma}^{-1}
+    \end{pmatrix}\\
+    b(\boldsymbol y) &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}}\\
+    T(\boldsymbol y)&=
+    \begin{pmatrix}
+      \boldsymbol{y}\\
+      \boldsymbol{y y}^T
+    \end{pmatrix}\\
+    a(\eta) &= \frac{1}{2} \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu}
+  \end{aligned}
+\end{equation*}
 \end{enumerate}
   
   % \newpage
