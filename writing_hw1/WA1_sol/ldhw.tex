@@ -54,7 +54,7 @@
 \item {\bf Acknowledgments: \/} 
   This template takes some materials from course CSE 547/Stat 548 of Washington University: \small{\url{https://courses.cs.washington.edu/courses/cse547/17sp/index.html}}.
 \item {\bf Collaborators: \/}
-  I finish this template by myself.
+  I finish this homework by myself.
   % \begin{itemize}
   % \item 1.2 (b) was solved with the help from \underline{\hspace{3em}}.
   % \item Discussion with \underline{\hspace{3em}} helped me finishing 1.3.
@@ -82,7 +82,7 @@
   \begin{enumerate}
   \item Evaluate the derivation of $b_l$:
     \begin{equation*}
-      \frac{\partial l}{\partial b_l} = \sum_i^m [\1 (y^{(i)}=l) - \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol{x}^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol{x}^{(i)}+b_j)}]
+      \frac{\partial l}{\partial b_l} = \sum_{i = 1}^m [\1 (y^{(i)}=l) - \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol{x}^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol{x}^{(i)}+b_j)}]
     \end{equation*}
     \noindent The $\1 (y^{(i)}=l)$ function is defined as:
     \begin{equation*}
@@ -99,17 +99,18 @@
   If we have set the biases to their optimal values, there exists $\frac{\partial l}{\partial b_l} = 0$.
   Based on (a):
   \begin{equation*}
-    \sum_i^m \1 (y^{(i)}=l) = \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol x^{(i)}+b_j)}
+    \sum_{i = 1}^m \1 (y^{(i)}=l) = \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol{\theta}^T_j \boldsymbol x^{(i)}+b_j)}
   \end{equation*}
   Based on the definition of $\hat{P}_y (l)$:
   \begin{equation*}
     \begin{aligned}
     \hat{P}_y (l) 
-    &= \frac{1}{m} \sum_i^m \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}]\\
-    &= \frac{1}{m} \sum_i^m \sum_{\boldsymbol x \in \boldsymbol X} \frac{\exp(\boldsymbol \theta^T_l \boldsymbol x+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}]\1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
-    &= \frac{1}{m} \sum_i^m \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
-    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \frac{1}{m} \sum_i^m \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
-    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} \hat{P}_{\boldsymbol x} (\boldsymbol x) 
+    &= \frac{1}{m} \sum_{i = 1}^m \1 (y^{(i)}=l)\\
+    &= \frac{1}{m} \sum_{i = 1}^m \frac{\exp(\boldsymbol{\theta}^T_l \boldsymbol x^{(i)}+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}\\
+    &= \frac{1}{m} \sum_{i = 1}^m \sum_{\boldsymbol x \in \boldsymbol X} \frac{\exp(\boldsymbol \theta^T_l \boldsymbol x+b_l)}{\sum_{j = 1}^k \exp(\boldsymbol \theta^T_j \boldsymbol x^{(i)}+b_j)}\1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \frac{1}{m} \sum_{i = 1}^m \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \frac{1}{m} \sum_{i = 1}^m \1 (\boldsymbol x^{(i)} = \boldsymbol x)\\
+    &= \sum_{\boldsymbol x \in \boldsymbol X} P_{(y \mid \boldsymbol x)} (l \mid \boldsymbol x) \hat{P}_{\boldsymbol x} (\boldsymbol x) 
     \end{aligned}
   \end{equation*}
   \end{enumerate}  
@@ -119,18 +120,18 @@
   \item
     The MLE is to solve
     \begin{equation*}
-      \maximize_{\mu} \prod_i^n P(x_i \mid \mu)
+      \maximize_{\mu} \prod_{i=1}^n P(x_i \mid \mu)
     \end{equation*}
     which is equal to:
     \begin{equation*}
       \begin{aligned}
-      &\maximize_{\mu} \sum_i^n \log P(x_i \mid \mu)\\
-      \Rightarrow &\maximize_{\mu} \sum_i^n (\log \frac{1}{\sqrt{2 \pi \delta^2}} - \frac{(x - \mu)^2}{2 \delta^2})\\
-      \Rightarrow &\minimize_{\mu} \sum_i^n (x_i - \mu)^2
+      &\maximize_{\mu} \sum_{i=1}^n \log P(x_i \mid \mu)\\
+      \Rightarrow &\maximize_{\mu} \sum_{i=1}^n (\log \frac{1}{\sqrt{2 \pi \delta^2}} - \frac{(x - \mu)^2}{2 \delta^2})\\
+      \Rightarrow &\minimize_{\mu} \sum_{i=1}^n (x_i - \mu)^2
       \end{aligned}
     \end{equation*}
-    Here we define $f(\mu) = \sum_i^n (x_i - \mu)^2$ to find the $\mu^*$. There exists $\frac{\partial f}{\partial \mu} = 2\sum_i^n (\mu - x_i) = 0$ when $\mu$=$\mu^*$ .\\
-    Then $\mu^* = \frac{\sum_i^n x_i}{n}$.
+    Here we define $f(\mu) = \sum_{i=1}^n (x_i - \mu)^2$ to find the $\mu^*$. And $f(\mu)$ is a convex function. There exists $\frac{\partial f}{\partial \mu} = 2\sum_i^n (\mu - x_i) = 0$ when $\mu$=$\mu^*$ .\\
+    Then $\mu^* = \frac{\sum_{i=1}^n x_i}{n}$.
     %  \defeq \max\{1 - yz, 0\}$.
 
   \item
@@ -138,24 +139,25 @@
     \begin{equation*}
       \maximize_{\mu} P(\mu \mid x_1,...,x_n)
     \end{equation*}
-    which is equal to:
+    which is equivalent to:
     \begin{equation*}
       \begin{aligned}
       &\maximize_{\mu} P(\mu\mid x_1,...,x_n)\\
       \Rightarrow &\maximize_{\mu} P(x_1,...,x_n\mid\mu)P(\mu)\\
-      \Rightarrow &\maximize_{\mu} \prod_i^n P(x_i\mid\mu)P(\mu)\\
-      \Rightarrow &\maximize_{\mu} \sum_i^n \log P(x_i\mid\mu) + \log P(\mu)\\
-      \Rightarrow &\maximize_{\mu} \sum_i^n -\frac{(x_i-\mu)^2}{2\delta^2} - \log \sqrt{2\pi\theta^2} - \frac{(\mu - \nu)^2}{2 \delta^2}\\
-      \Rightarrow &\minimize_{\mu} \sum_i^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}\\
+      \Rightarrow &\maximize_{\mu} \prod_{i=1}^n P(x_i\mid\mu)P(\mu)\\
+      \Rightarrow &\maximize_{\mu} \sum_{i=1}^n \log P(x_i\mid\mu) + \log P(\mu)\\
+      \Rightarrow &\maximize_{\mu} -\sum_{i=1}^n \frac{(x_i-\mu)^2}{2\delta^2} - \log \sqrt{2\pi\theta^2} - \frac{(\mu - \nu)^2}{2 \delta^2}\\
+      \Rightarrow &\minimize_{\mu} \sum_{i=1}^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}\\
       \end{aligned}
     \end{equation*}
-    Here we define $g(\mu) = \sum_i^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}$ to find the $\mu^*$. There exists $\frac{\partial g}{\partial \mu} = \sum_i^n \frac{\mu(\mu-x_i)}{\delta^2} + \frac{\mu(\mu - \nu)}{\theta^2} = 0$ when $\mu$=$\mu^*$ .\\
-    Then $\mu^* = \frac{\sum_i^n x_i + \delta^2\nu}{\theta^2n+\delta^2}$.\\
-    When $n \rightarrow \infty$, $\mu^*$ for MLE and MAP is equal.
+    Here we define $g(\mu) = \sum_{i=1}^n \frac{(x_i-\mu)^2}{2\delta^2} + \frac{(\mu - \nu)^2}{2 \theta^2}$ to find the $\mu^*$. There exists $\frac{\partial g}{\partial \mu} = \sum_{i=1}^n \frac{\mu-x_i}{\delta^2} + \frac{\mu - \nu}{\theta^2} = 0$ when $\mu$=$\mu^*$ .\\
+    Then $\mu^* = \frac{\theta^2\sum_{i=1}^n x_i + \delta^2\nu}{\theta^2n+\delta^2}$.\\
+    When $n \rightarrow \infty$, $\mu^* = \frac{\sum_{i=1}^n x_i}{n}$ and MLE and MAP is equal.
   \end{enumerate}
 
 % The solution of 1.3
-\item First, the square error can be written as 
+\item \small{\textsl{Here we define for matrix $\boldsymbol{X}$, $\boldsymbol{X}_i$ is the $i$th column vector for $\boldsymbol{X}$, and $\boldsymbol{X}_{ij}$ is the element in the $i$th row and $j$th column. Other symbols' definations are the same as those in the problem.}}\\
+First, the square error can be written as 
   \begin{equation*}
     \begin{aligned}
       J(\boldsymbol \Theta) 
@@ -171,10 +173,11 @@
       &= \sum_{i = 1}^m (\boldsymbol{x}_\alpha^{(i)}(\boldsymbol{\Theta}_\beta^T \boldsymbol{x}^{(i)}-\boldsymbol{y}_{\beta}^{(i)}))\\
     \end{aligned}
   \end{equation*}
+  
   Then we have $\frac{\partial J}{\partial \Theta}=0$, which means:
   \begin{equation*}
     \begin{aligned}
-      \sum_{i = 1}^m \boldsymbol{x}_\alpha^{(i)}(\boldsymbol{\Theta}_\beta^T \boldsymbol{x}^{(i)}) 
+      \sum_{i = 1}^m \boldsymbol{x}_\alpha^{(i)}(\boldsymbol{\Theta}_\beta^T \boldsymbol{x}^{(i)})
       &= \sum_{i = 1}^m \boldsymbol{x}^{(i)}_\alpha \boldsymbol{y}_{\beta}^{(i)})\\
       \Rightarrow \boldsymbol{X}_\alpha^T \boldsymbol{X} \boldsymbol{\Theta}_\beta &= \boldsymbol{X}_\alpha^T \boldsymbol{Y}_{\beta}\\
       \Rightarrow \boldsymbol{X}^T \boldsymbol{X} \boldsymbol{\Theta}_\beta &= \boldsymbol{X}^T \boldsymbol{Y}_{\beta}\\
@@ -182,11 +185,11 @@
   \end{equation*}
   So, for $\beta \in (1,2,...,l)$ we have
   \begin{equation*}
-    \boldsymbol{\Theta}_\beta = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{y}_{\beta}
+    \boldsymbol{\Theta}_\beta = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{Y}_{\beta}
   \end{equation*}
-  Also,
+  Finally,
   \begin{equation*}
-    \boldsymbol{\Theta} = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{y}
+    \boldsymbol{\Theta} = (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{Y}
   \end{equation*}
 
 
@@ -200,7 +203,7 @@
     &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2}(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y}-\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y} - \boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu} + \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
     &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2} tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y}-\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y} - \boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu} + \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
     &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(-\frac{1}{2} (tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{y})-tr(\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y}) - tr(\boldsymbol{y}^T{\boldsymbol \Sigma}^{-1} \boldsymbol{\mu}) + tr(\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu}))\\
-    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(tr({\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\boldsymbol{y} -\frac{1}{2}tr({\boldsymbol \Sigma}^{-1} \boldsymbol{y} \boldsymbol{y}^T)-\frac{1}{2} \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
+    &= (2\pi)^{-\frac{n}{2}}|\boldsymbol \Sigma|^{-\frac{1}{2}} \exp(tr(\boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{y}) -\frac{1}{2}tr({\boldsymbol \Sigma}^{-1} \boldsymbol{y} \boldsymbol{y}^T)-\frac{1}{2} \boldsymbol{\mu}^T{\boldsymbol \Sigma}^{-1}\boldsymbol{\mu})\\
   \end{aligned}
 \end{equation*}
 Thus, we can see that multivariate normal distribution is an exponential family with:
