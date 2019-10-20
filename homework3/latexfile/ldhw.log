@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.16)  17 OCT 2019 09:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.16)  19 OCT 2019 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -533,27 +533,22 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 55.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 102.
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 103.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [1
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (47.33522pt too wide) detected at line 117
-[][]
- []
-
-[2] (/Users/mac/Desktop/Data_Learning/homework3/latexfile/ldhw.aux) ) 
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (/Users/mac/Desktop/Data_Learning/homework3/latexfile/ldhw.aux) ) 
 Here is how much of TeX's memory you used:
- 8582 strings out of 492616
- 125576 string characters out of 6129481
- 218213 words of memory out of 5000000
- 12320 multiletter control sequences out of 15000+600000
+ 8583 strings out of 492616
+ 125588 string characters out of 6129481
+ 218221 words of memory out of 5000000
+ 12321 multiletter control sequences out of 15000+600000
  18070 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,118p,871b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,9n,118p,871b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on /Users/mac/Desktop/Data_Learning/homework3/latexfile/ldhw.pdf (2 pages, 185543 bytes).
+Output written on /Users/mac/Desktop/Data_Learning/homework3/latexfile/ldhw.pdf (2 pages, 186059 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream

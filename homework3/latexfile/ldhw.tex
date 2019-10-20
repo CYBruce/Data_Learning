@@ -82,25 +82,27 @@
   \end{equation*}
 
   Also, there exist constrains for $\phi_y,\phi_j (x \mid y)$:
-  \begin{equation*}
+  \begin{equation}
+    \label{constrains}
     \begin{aligned}
       \sum_{y=1}^k \phi_y &= 1\\
       \sum_{x \in \{0,1\}} \phi_j (x \mid y) &= 1 \quad y \in \{1,...,K\}\\
     \end{aligned}
-  \end{equation*}
+  \end{equation}
 Then to find the maximum value of $l$ with bringing these constrains into equation using lagrange multiplier
 \begin{equation*}
   \begin{aligned}
     g(l, \lambda, \lambda_{jk}) = \sum_{i = 1}^m \sum_{j = 1}^d \log \phi_j (x^{(i)}_j \mid y^{(i)}) + \sum_{i = 1}^m \log \phi_{y^{(i)}} \\
-      + \lambda(\sum_{y=1}^k\phi_y - 1) +\lambda_{jk}(\sum_{x \in \{0,1\}}\phi_j(x \mid k)-1)
+      - \lambda(\sum_{y=1}^k\phi_y - 1) - \lambda_{jk}(\sum_{x \in \{0,1\}}\phi_j(x \mid k)-1)
   \end{aligned}
 \end{equation*}
 
 Using lagrange multiplier method to find the parameters of the maximum value, there exists:
 \begin{equation*}
   \begin{gathered}
-    \frac{dg}{d \phi_y} = \sum_{i = 1}^m \1 (y^{(i)}=y) \frac{1}{\phi_y} + \lambda = 0\\
-    \Rightarrow \sum_{i = 1}^m \1 (y^{(i)}=1) \frac{1}{\phi_1}=\sum_{i = 1}^m \1 (y^{(i)}=2) \frac{1}{\phi_2}=...=\sum_{i = 1}^m \1 (y^{(i)}=K) \frac{1}{\phi_K}
+    \frac{dg}{d \phi_y} = \sum_{i = 1}^m \frac{\1 (y^{(i)}=y)}{\phi_y} - \lambda = 0\\
+    \Rightarrow \sum_{i = 1}^m \frac{\1 (y^{(i)}=1)}{\phi_1}=\sum_{i = 1}^m \frac{\1 (y^{(i)}=2)}{\phi_2}=...=\sum_{i = 1}^m \frac{\1 (y^{(i)}=K)}{\phi_K}\\
+    \frac{dg}{d \lambda} = \sum_{y=1}^k \phi_y - 1 = 0\\
   \end{gathered}
 \end{equation*}
 Then here has
@@ -111,8 +113,9 @@ Then here has
 Also, 
 \begin{equation*}
   \begin{gathered}
-    \frac{dg}{d \phi_j (x \mid y)} = \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=x) \frac{1}{\phi_j (x \mid y)} + \lambda_j (x \mid y) = 0\\
-    \Rightarrow \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=0) \frac{1}{\phi_j (x=0 \mid y)} = \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=1) \frac{1}{\phi_j (x=1 \mid y)}\\
+    \frac{dg}{d \phi_j (x \mid y)} = \sum_{i = 1}^m \frac{\1 (y^{(i)}=y) \1 (x^{(i)}_j=x)}{\phi_j (x \mid y)} - \lambda_{jy} = 0\\
+    \Rightarrow \sum_{i = 1}^m \frac{\1 (y^{(i)}=y) \1 (x^{(i)}_j=0)}{\phi_j (x=0 \mid y)} = \sum_{i = 1}^m \frac{\1 (y^{(i)}=y) \1 (x^{(i)}_j=1)}{\phi_j (x=1 \mid y)}\\
+    \frac{dg}{d \lambda_{jy}} = \sum_{x \in \{0,1\}} \phi_j (x \mid y) - 1 = 0
   \end{gathered}
 \end{equation*}
 Thus,
