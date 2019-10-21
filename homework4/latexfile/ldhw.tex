@@ -34,7 +34,7 @@
 \setcounter{hwcnt}{2} % set to the times of Homework
 
 \begin{center}
-  \underline{\bf Homework 3}%\thehwcnt} \\
+  \underline{\bf Writing Homework 2}%\thehwcnt} \\
 \end{center}
 \begin{flushleft}
   TIAN Chenyu\hfill
@@ -68,57 +68,116 @@
 
 \begin{enumerate}
   \setlength{\itemsep}{3\parskip}
-\item The log-likelihood of the naive Bayes model can be writen as  
+\item Define $\boldsymbol{P} = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}$, for a given vector $\boldsymbol{v}$
 \begin{equation*}
+  \boldsymbol{v} = \boldsymbol{P} \boldsymbol{v}+ (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+\end{equation*}
+If we can prove that $\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}$ is orthogonal to both $\boldsymbol{P} \boldsymbol{v}$ and the column space of $\boldsymbol{X}$,
+we can prove that matrix $\boldsymbol{P}$ project $\boldsymbol{v}$ onto column space of $\boldsymbol{X}$.\\
+So this problem is equvalent to prove:
+  \begin{equation*}
     % \tag{P}
     \begin{aligned}
-      l(\phi_y,\phi_j (x \mid y)) 
-      &= \sum_{i = 1}^m \log p(x^{(i)}, y^{(i)})\\
-      &= \sum_{i = 1}^m (\log p(x^{(i)} \mid y^{(i)}) + \log p(y^{(i)}))\\
-      &= \sum_{i = 1}^m (\sum_{j = 1}^d \log p(x^{(i)}_j \mid y^{(i)}) + \log p(y^{(i)}))\\
-      &= \sum_{i = 1}^m \sum_{j = 1}^d \log \phi_j (x^{(i)}_j \mid y^{(i)}) + \sum_{i = 1}^m \log \phi_{y^{(i)}}\\
+      (\boldsymbol{P} \boldsymbol{v})^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}) = 0\\
+      \boldsymbol{X}^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}) = 0\\
     \end{aligned}
     \label{eq:svm:p}
   \end{equation*}
 
-  Also, there exist constrains for $\phi_y,\phi_j (x \mid y)$:
+  Proof:
   \begin{equation*}
     \begin{aligned}
-      \sum_{y=1}^k \phi_y &= 1\\
-      \sum_{x \in \{0,1\}} \phi_j (x \mid y) &= 1 \quad y \in \{1,...,K\}\\
+      (\boldsymbol{P} \boldsymbol{v})^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+      &= (\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})^T \boldsymbol{v}\\
+      &\quad - (\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})^T(\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})\\
+      &=\boldsymbol{v}^T \boldsymbol{X} ((\boldsymbol{X}^T \boldsymbol{X})^{-1})^T \boldsymbol{X}^T \boldsymbol{v} \\
+      &\quad -\boldsymbol{v}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
+      &=\boldsymbol{v}^T (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\ 
+      &\quad -\boldsymbol{v}^T \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\
+      &=0
     \end{aligned}
   \end{equation*}
-Then to find the maximum value of $l$ with bringing these constrains into equation using lagrange multiplier
+  \begin{equation*}
+    \begin{aligned}
+      \boldsymbol{X}^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+      &= \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}^T \boldsymbol{P} \boldsymbol{v}\\
+      &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
+      &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v}\\
+      &=0
+    \end{aligned}
+  \end{equation*}
+Thus, $\boldsymbol{P} = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}$ project $\boldsymbol{v}$ onto column space of $\boldsymbol{X}$.
+
+Then need to prove that $\boldsymbol{\theta}$ correspond to an orthogonal projection of the vector $\boldsymbol{y}$ onto the column space of $\boldsymbol{X}$.
+%  ???????
+
+\item Then to find the maximum value of $l$ with bringing these constrains into equation using lagrange multiplier
 \begin{equation*}
   \begin{aligned}
     g(l, \lambda, \lambda_{jk}) = \sum_{i = 1}^m \sum_{j = 1}^d \log \phi_j (x^{(i)}_j \mid y^{(i)}) + \sum_{i = 1}^m \log \phi_{y^{(i)}} \\
       + \lambda(\sum_{y=1}^k\phi_y - 1) +\lambda_{jk}(\sum_{x \in \{0,1\}}\phi_j(x \mid k)-1)
   \end{aligned}
 \end{equation*}
+\item Questions about SVM
+\begin{enumerate}
+  \item half done
+  \item From the KKT condition, here exists:
+    \begin{equation*}
+      \begin{gathered}
+        \sum_{i=1}^{l} \alpha_{i}^{\star}\left[y_{i}\left(\boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star}\right)-1\right]=0\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+ \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} b^{\star} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+ b^{\star} \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \sum_{j=1}^{l} \alpha_{i}^{\star} \alpha_{j}^{\star} y_{i} y_{j}\left\langle\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right\rangle = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+      \end{gathered}
+    \end{equation*}
+    Then, using the equation above, it has
+    \begin{equation*}
+      \begin{aligned}
+        \frac{1}{2}\left\|\boldsymbol{w}^{\star}\right\|_{2}^{2}
+        &=\sum_{i=1}^{l} \alpha_{i}^{\star}-\frac{1}{2} \sum_{i=1}^{l} \sum_{j=1}^{l} \alpha_{i}^{\star} \alpha_{j}^{\star} y_{i} y_{j}\left\langle\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right\rangle\\
+        &=\frac{1}{2} \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+      \end{aligned}
+    \end{equation*}
+\end{enumerate}
 
-Using lagrange multiplier method to find the parameters of the maximum value, there exists:
-\begin{equation*}
-  \begin{gathered}
-    \frac{dg}{d \phi_y} = \sum_{i = 1}^m \1 (y^{(i)}=y) \frac{1}{\phi_y} + \lambda = 0\\
-    \Rightarrow \sum_{i = 1}^m \1 (y^{(i)}=1) \frac{1}{\phi_1}=\sum_{i = 1}^m \1 (y^{(i)}=2) \frac{1}{\phi_2}=...=\sum_{i = 1}^m \1 (y^{(i)}=K) \frac{1}{\phi_K}
-  \end{gathered}
-\end{equation*}
-Then here has
-\begin{equation*}
-  \phi_y = \frac{\sum_{i = 1}^m \1 (y^{(i)}=y)}{m}
-\end{equation*}
+\item 
+\begin{enumerate}
+  \item a
+  \item To prove a convex function
+  \begin{equation*}
+    \begin{aligned}
+      f(\boldsymbol{\omega} ,b) = \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)
+    \end{aligned}
+  \end{equation*}
+  proof:
+  \begin{equation*}
+    \begin{aligned}
+      &\|\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2}\|_{2}^{2} -\theta \| \boldsymbol{w}_{1}\|_{2}^{2}-(1-\theta) \|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      =& \theta^{2}\|\boldsymbol{w}_{1}\|_{2}^{2} + 2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2}+ (1-\theta)^{2} \|\boldsymbol{w}_{2}\|_{2}^{2} -\theta \| \boldsymbol{w}_{1}\|_{2}^{2}-(1-\theta) \|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      =& 2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2} - \theta(1-\theta)\|\boldsymbol{w}_{1}\|_{2}^{2} -\theta(1-\theta)\|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2} - \theta\|\boldsymbol{w}_{1}\|_{2}^{2} -\theta\|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &-\theta \|\boldsymbol{w}_{1} - \boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &0\\
+      \Rightarrow \quad& \|\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2}\|_{2}^{2}\leq \theta \| \boldsymbol{w}_{1}\|_{2}^{2} + (1-\theta) \| \boldsymbol{w}_{2}\|_{2}^{2}
+    \end{aligned}
+  \end{equation*}
+  So $\|\boldsymbol{w}\|_{2}^{2}$ is a convex function.
+  \begin{equation*}
+    \begin{aligned}
+      &\ell \left(y_i, (\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2})^{T} \boldsymbol{x_i}+\theta b_{1}+(1-\theta) b_{2}\right)\\
+      =& \max \{1-y_i \left((\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2})^{T} \boldsymbol{x_i}+\theta b_{1}+(1-\theta) b_{2}\right), 0\}\\
+      \leq &\max \{\theta-y_i (\theta \boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+\theta b_{1}) + (1-\theta)-y_i ((1-\theta) \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +(1-\theta) b_{2}), 0\}\\
+      \leq &\max \{\theta-y_i (\theta \boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+\theta b_{1}) ), 0\} + \max \{(1-\theta)-y_i ((1-\theta) \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +(1-\theta) b_{2}), 0\}\\
+      \leq &\theta \max \{1-y_i (\boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+b_{1}) ), 0\} + (1-\theta)\max \{1-y_i \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +b_{2}), 0\}\\ 
+      \leq &\theta \ell \left(y_i, \boldsymbol{w}_{1}^{T} \boldsymbol{x}_{i}+b_{1}\right)+(1-\theta) \ell \left(y_i, \boldsymbol{w}_{2}^{T} \boldsymbol{x}_{i}+b_{2}\right)
+    \end{aligned}
+  \end{equation*}
+  So $\ell(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b)$ is a convex function.\\
+  The non-negative weighted sum of convex functions is still a convex function. And $C \geq 0$. \\
+  Thus the objective function $f(\boldsymbol{\omega} ,b) = \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$ is convex.
+\end{enumerate}
 
-Also, 
-\begin{equation*}
-  \begin{gathered}
-    \frac{dg}{d \phi_j (x \mid y)} = \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=x) \frac{1}{\phi_j (x \mid y)} + \lambda_j (x \mid y) = 0\\
-    \Rightarrow \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=0) \frac{1}{\phi_j (x=0 \mid y)} = \sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=1) \frac{1}{\phi_j (x=1 \mid y)}\\
-  \end{gathered}
-\end{equation*}
-Thus,
-\begin{equation*}
-  \phi_j (x \mid y) = \frac{\sum_{i = 1}^m \1 (y^{(i)}=y) \1 (x^{(i)}_j=x)}{\sum_{i = 1}^m \1 (y^{(i)}=y)}
-\end{equation*}
 \end{enumerate}
   
   % \newpage
