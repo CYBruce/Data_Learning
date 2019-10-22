@@ -14,6 +14,7 @@ Data learning course repo opened in TBSI 2019 autumn.
 
 ## homework
 
-- programming:
-- writing
-- programming:
+- programming: gradient descent & logistic regression
+- writing homework 1
+- programming: naive bayes
+- writing homework 1
