@@ -92,23 +92,23 @@ So this problem is equvalent to prove:
       &\quad - (\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})^T(\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})\\
       &=\boldsymbol{v}^T \boldsymbol{X} ((\boldsymbol{X}^T \boldsymbol{X})^{-1})^T \boldsymbol{X}^T \boldsymbol{v} \\
       &\quad -\boldsymbol{v}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
-      &=\boldsymbol{v}^T (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\ 
+      &=\boldsymbol{v}^T \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\ 
       &\quad -\boldsymbol{v}^T \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\
-      &=0
+      &=\boldsymbol{0}
     \end{aligned}
   \end{equation*}
   \begin{equation*}
     \begin{aligned}
       \boldsymbol{X}^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
-      &= \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}^T \boldsymbol{P} \boldsymbol{v}\\
+      &= \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{P} \boldsymbol{v}\\
       &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
       &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v}\\
-      &=0
+      &=\boldsymbol{0}
     \end{aligned}
   \end{equation*}
 Thus, $\boldsymbol{P} = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}$ project $\boldsymbol{v}$ onto column space of $\boldsymbol{X}$.
 
-I think that $\widehat{\boldsymbol{y}} = \boldsymbol{X} \boldsymbol{\theta}=\boldsymbol{X}\left(\boldsymbol{X}^{T} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{T} \boldsymbol{y}$ correspond to an orthogonal projection of the vector $\boldsymbol{y}$ onto the column space of $\boldsymbol{X}$.
+So, $\widehat{\boldsymbol{y}} = \boldsymbol{X} \boldsymbol{\theta}=\boldsymbol{X}\left(\boldsymbol{X}^{T} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{T} \boldsymbol{y} = \boldsymbol{P} \boldsymbol{v}$ correspond to an orthogonal projection of the vector $\boldsymbol{y}$ onto the column space of $\boldsymbol{X}$.
 
 % 2.2
 \item 
@@ -126,20 +126,20 @@ For $\boldsymbol{\Sigma_{0}}$, we have
 \begin{equation*}
 \begin{aligned} 
   \frac{\partial l\left(\phi, \boldsymbol{\mu_{0}}, \boldsymbol{\mu_{1}}, \boldsymbol{\Sigma_{0}}, \boldsymbol{\Sigma_{1}}\right)}{\partial \boldsymbol{\Sigma_{0}}}
-  &=-\frac{\sum_{i=1}^{m} \1 (y^{i}=0)}{2} \frac{\partial}{\partial \boldsymbol{\Sigma_{0}}} \log |\boldsymbol{\Sigma_{0}}|\\
+  &=-\frac{\sum_{i=1}^{m} \1 (y^{(i)}=0)}{2} \frac{\partial}{\partial \boldsymbol{\Sigma_{0}}} \log |\boldsymbol{\Sigma_{0}}|\\
   &\quad -\frac{1}{2} \frac{\partial}{\partial \boldsymbol{\Sigma_{0}}} \sum_{i=1}^{m}\1 (y^{i}=0) \left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{T} \boldsymbol{\Sigma_{0}}^{-1}\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right) \\ 
-  &=-\frac{\sum_{i=1}^{m} \1 (y^{i}=0)}{2} \boldsymbol{\Sigma_{0}}^{-1}\\
-  &\quad +\frac{1}{2} \boldsymbol{\Sigma_{0}}^{-1}\left[\sum_{i=1}^{m}\1 (y^{i}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}\right] \boldsymbol{\Sigma_{0}}^{-1} \\ 
+  &=-\frac{\sum_{i=1}^{m} \1 (y^{(i)}=0)}{2} \boldsymbol{\Sigma_{0}}^{-1}\\
+  &\quad +\frac{1}{2} \boldsymbol{\Sigma_{0}}^{-1}\left[\sum_{i=1}^{m}\1 (y^{(i)}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}\right] \boldsymbol{\Sigma_{0}}^{-1} \\ 
   &=O 
 \end{aligned}
 \end{equation*}
 which yields that
 \begin{equation*}
-  \boldsymbol{\Sigma_{0}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{i}=0)} \sum_{i=1}^{m}\1 (y^{i}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}
+  \boldsymbol{\Sigma_{0}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{(i)}=0)} \sum_{i=1}^{m}\1 (y^{(i)}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}
 \end{equation*}
 With same derivation
 \begin{equation*}
-  \boldsymbol{\Sigma_{1}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{i}=1)} \sum_{i=1}^{m}\1 (y^{i}=1)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)^{\mathrm{T}}
+  \boldsymbol{\Sigma_{1}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{(i)}=1)} \sum_{i=1}^{m}\1 (y^{(i)}=1)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)^{\mathrm{T}}
 \end{equation*}
 
 
@@ -190,28 +190,34 @@ With same derivation
     {} & {y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1-\xi_{i}, \quad i=1, \ldots, l}\end{array}
     \end{aligned}
   \end{equation*}
-  Then generate its Lagrange function
-  \begin{equation*}
-    L(\boldsymbol{w}, b, \lambda_i, \mu_i)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \xi_{i} - \sum_{i=1}^{l}\lambda_i\xi_i - \sum_{i=1}^{l}\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i})
-  \end{equation*}
-  The optimal solution satisfies KKT condition, with
-  \begin{equation*}
-    \begin{aligned}
-      &C -\lambda_i -\mu_i = 0\\
-      &\xi_{i} \geq 0\\
-      &\lambda_i \xi_{i} = 0\\
-      &y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1-\xi_{i}\\
-      &\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i}) = 0\\
-    \end{aligned}
-  \end{equation*}
-  when find the optimal solution, here exist
-  \begin{equation*}
-    \min L(\boldsymbol{w}^*, b^*, \lambda_i^*, \mu_i^*)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2} + C \sum_{i=1}^{l} \xi_{i}
-  \end{equation*}
-  When $\mu_i=0$, here exists $\lambda=C$ and $\xi_{i}=0$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \leq 0$,\\
-  so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=0;\\
-  When $\mu_i\neq0$, $\xi_{i}= 1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) = \xi_i \geq 0$,\\ 
-  so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$.\\
+  For the optimal solution, \\
+  if $y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1$, because we want to minimize $\sum_{i=1}^{l} \xi_{i}$, $\xi_{i}$ must be 0, which equals to $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$;\\
+  if $y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) < 1$, because of the constrains, $\xi_{i}$ must be $1-y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$, which equals to $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$.\\
+  This means if find the solution of the original problem, the solution of (3) in file *wa2* is found.
+  % Then generate its Lagrange function
+  % \begin{equation*}
+  %   L(\boldsymbol{w}, b, \lambda_i, \mu_i)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \xi_{i} - \sum_{i=1}^{l}\lambda_i\xi_i - \sum_{i=1}^{l}\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i})
+  % \end{equation*}
+  % The optimal solution satisfies KKT condition, with
+  % \begin{equation*}
+  %   \begin{aligned}
+  %     &C -\lambda_i -\mu_i = 0\\
+  %     &\xi_{i} \geq 0\\
+  %     &\lambda_i \xi_{i} = 0\\
+  %     &y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1-\xi_{i}\\
+  %     &\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i}) = 0\\
+  %     &\mu_i \leq 0\\
+  %     &\lambda_i \leq 0\\
+  %   \end{aligned}
+  % \end{equation*}
+  % when find the optimal solution, here exist
+  % \begin{equation*}
+  %   \min L(\boldsymbol{w}^*, b^*, \lambda_i^*, \mu_i^*)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2} + C \sum_{i=1}^{l} \xi_{i}
+  % \end{equation*}
+  % When $\mu_i=0$, here exists $\lambda=C$ and $\xi_{i}=0$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \leq 0$,\\
+  % so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=0;\\
+  % When $\mu_i\neq0$, $\xi_{i}= 1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) = \xi_i \geq 0$,\\ 
+  % so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$.\\
   Thus, the problem is equvalent to
   \begin{equation*}
     \underset{\boldsymbol{w}, b}{\operatorname{minimize}} \quad \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)

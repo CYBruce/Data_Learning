@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1571807962 "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.tex" "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.pdf" "ldhw" 1571807963
-  "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.aux" 1571807963 43 7fb6bd8185cc3dacef97ed73e46df722 ""
-  "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.tex" 1571807962 15842 58aec1491c189f45e3aeba5b8ef27a75 ""
+["pdflatex"] 1572349001 "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.tex" "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.pdf" "ldhw" 1572349002
+  "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.aux" 1572349002 43 7fb6bd8185cc3dacef97ed73e46df722 ""
+  "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.tex" 1572349001 16652 3ebe703c4b5e66c03889d548d5a80144 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
@@ -141,11 +141,11 @@
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1568648366 4259636 6a7b51a24ecf8bf8c483540c12969ca7 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
   "lddef.tex" 1571274856 2765 dec61729eccc8262c112dbaf6b64d592 ""
-  "ldhw.aux" 1571807963 43 7fb6bd8185cc3dacef97ed73e46df722 "pdflatex"
-  "ldhw.tex" 1571807962 15842 58aec1491c189f45e3aeba5b8ef27a75 ""
+  "ldhw.aux" 1572349002 43 7fb6bd8185cc3dacef97ed73e46df722 "pdflatex"
+  "ldhw.tex" 1572349001 16652 3ebe703c4b5e66c03889d548d5a80144 ""
   (generated)
+  "ldhw.log"
   "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.log"
   "/Users/mac/Desktop/Data_Learning/homework4/latexfile/ldhw.pdf"
   "ldhw.aux"
   "ldhw.pdf"
-  "ldhw.log"
