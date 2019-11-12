@@ -1,0 +1,289 @@
+% Homework template for Learning from Data
+% by Xiangxiang Xu <xiangxiangxu.thu@gmail.com>
+% LAST UPDATE: October 8, 2018
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+% amsmath: equation*, amssymb: mathbb, amsthm: proof
+\usepackage{moreenum}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % toprule
+\usepackage[mathcal]{eucal}
+\usepackage{dsfont}
+\usepackage[numbered,framed]{matlab-prettifier}
+\input{lddef}
+
+\lstset{
+  style              = Matlab-editor,
+  captionpos         =b,
+  basicstyle         = \mlttfamily,
+  escapechar         = ",
+  mlshowsectionrules = true,
+}
+\begin{document}
+\courseheader
+
+
+
+\newcounter{hwcnt}
+\setcounter{hwcnt}{3} % set to the times of Homework
+
+\begin{center}
+  \underline{\bf Writing Homework 3}%\thehwcnt} \\
+\end{center}
+\begin{flushleft}
+  TIAN Chenyu\hfill
+  \today
+\end{flushleft}
+\hrule
+
+\vspace{2em}
+\setlist[enumerate,1]{label=\thehwcnt.\arabic*.}
+\setlist[enumerate,2]{label=(\alph*)}
+\setlist[enumerate,3]{label=\roman*.}
+\setlist[enumerate,4]{label=\greek*)}
+
+\flushleft
+\rule{\textwidth}{1pt}
+\begin{itemize}
+\item {\bf Acknowledgments: \/} 
+  This template takes some materials from course CSE 547/Stat 548 of Washington University: \small{\url{https://courses.cs.washington.edu/courses/cse547/17sp/index.html}}.
+\item {\bf Collaborators: \/}
+  I finish this homework by myself.
+  % \begin{itemize}
+  % \item 1.2 (b) was solved with the help from \underline{\hspace{3em}}.
+  % \item Discussion with \underline{\hspace{3em}} helped me finishing 1.3.
+  % \end{itemize}
+\end{itemize}
+\rule{\textwidth}{1pt}
+
+\vspace{2em}
+
+% You may use \texttt{enumerate} to generate answers for each question:
+
+\begin{enumerate}
+  \setlength{\itemsep}{3\parskip}
+\item Define $\boldsymbol{P} = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}$, for a given vector $\boldsymbol{v}$
+\begin{equation*}
+  \boldsymbol{v} = \boldsymbol{P} \boldsymbol{v}+ (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+\end{equation*}
+If we can prove that $\boldsymbol{P} \boldsymbol{v}$ is on the column space of $\boldsymbol{X}$ and $\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}$ is orthogonal to both $\boldsymbol{P} \boldsymbol{v}$ and the column space of $\boldsymbol{X}$,
+we can prove that matrix $\boldsymbol{P}$ project $\boldsymbol{v}$ onto column space of $\boldsymbol{X}$.\\
+So this problem is equvalent to prove:
+  \begin{equation*}
+    % \tag{P}
+    \begin{gathered}
+      \boldsymbol{P} \boldsymbol{v} \in im(\boldsymbol{X})\\
+      (\boldsymbol{P} \boldsymbol{v})^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}) = 0\\
+      \boldsymbol{X}^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v}) = 0\\
+    \end{gathered}
+    \label{eq:svm:p}
+  \end{equation*}
+
+  Proof:
+  \begin{equation*}
+    \begin{aligned}
+      \boldsymbol{P}\boldsymbol{v} 
+      & = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v}\\
+      & = \boldsymbol{X}(\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v})
+    \end{aligned}
+  \end{equation*}
+  \quad Define a vector $\boldsymbol{\theta} = \left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v}$, and $\boldsymbol{P} \boldsymbol{v}$ is a linear combination of the column vectors of $\boldsymbol{X}$. \\
+  \quad So it is clear that $\boldsymbol{P} \boldsymbol{v} \in im(\boldsymbol{X})$.
+  \begin{equation*}
+    \begin{aligned}
+      (\boldsymbol{P} \boldsymbol{v})^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+      &= (\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})^T \boldsymbol{v}\\
+      &\quad - (\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})^T(\boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v})\\
+      &=\boldsymbol{v}^T \boldsymbol{X} ((\boldsymbol{X}^T \boldsymbol{X})^{-1})^T \boldsymbol{X}^T \boldsymbol{v} \\
+      &\quad -\boldsymbol{v}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
+      &=\boldsymbol{v}^T \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\ 
+      &\quad -\boldsymbol{v}^T \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}\boldsymbol{v}\\
+      &=\boldsymbol{0}
+    \end{aligned}
+  \end{equation*}
+  \begin{equation*}
+    \begin{aligned}
+      \boldsymbol{X}^T (\boldsymbol{v}-\boldsymbol{P} \boldsymbol{v})
+      &= \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{P} \boldsymbol{v}\\
+      &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^T \boldsymbol{X} (\boldsymbol{X}^T \boldsymbol{X})^{-1} \boldsymbol{X}^T \boldsymbol{v}\\
+      &=\boldsymbol{X}^{\mathrm{T}} \boldsymbol{v} - \boldsymbol{X}^{\mathrm{T}} \boldsymbol{v}\\
+      &=\boldsymbol{0}
+    \end{aligned}
+  \end{equation*}
+Thus, $\boldsymbol{P} = \boldsymbol{X}\left(\boldsymbol{X}^{\mathrm{T}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{T}}$ project $\boldsymbol{v}$ onto column space of $\boldsymbol{X}$.
+
+So, $\widehat{\boldsymbol{y}} = \boldsymbol{X} \boldsymbol{\theta}=\boldsymbol{X}\left(\boldsymbol{X}^{T} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{T} \boldsymbol{y} = \boldsymbol{P} \boldsymbol{v}$ correspond to an orthogonal projection of the vector $\boldsymbol{y}$ onto the column space of $\boldsymbol{X}$.
+
+% 2.2
+\item 
+\begin{equation*}
+  \begin{array}{l}{p(\boldsymbol{x} | y=0)=\frac{1}{(2 \pi)^{n / 2}|\boldsymbol{\Sigma_{0}}|^{1 / 2}} \exp \left(-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu_{0}}\right)^{T} \boldsymbol{\Sigma_{0}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu_{0}}\right)\right)} \\ 
+  {p(\boldsymbol{x} | y=1)=\frac{1}{(2 \pi)^{n / 2}|\boldsymbol{\Sigma_{1}}|^{1 / 2}} \exp \left(-\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{\mu_{1}}\right)^{T} \boldsymbol{\Sigma_{1}}^{-1}\left(\boldsymbol{x}-\boldsymbol{\mu_{1}}\right)\right)}\end{array}
+\end{equation*}
+The log likelihood function of QDA is
+\begin{equation*}
+  \begin{aligned} l\left(\phi, \boldsymbol{\mu_{0}}, \boldsymbol{\mu_{1}}, \boldsymbol{\Sigma_{0}}, \boldsymbol{\Sigma_{1}}\right) &=\log \prod_{i=1}^{m} p\left(\boldsymbol{x}^{(i)}, y^{(i)} ; \phi, \boldsymbol{\mu_{0}}, \boldsymbol{\mu_{1}}, \boldsymbol{\Sigma_{0}}, \boldsymbol{\Sigma_{1}}\right) \\ 
+  &=\log \prod_{i=1}^{m} p\left(\boldsymbol{x}^{(i)} | y^{(i)} ; \boldsymbol{\mu_{0}}, \boldsymbol{\mu_{1}}, \boldsymbol{\Sigma_{0}}, \boldsymbol{\Sigma_{1}}\right) \phi_{y^{(i)}} \end{aligned}
+\end{equation*}
+
+For $\boldsymbol{\Sigma_{0}}$, we have
+\begin{equation*}
+\begin{aligned} 
+  \frac{\partial l\left(\phi, \boldsymbol{\mu_{0}}, \boldsymbol{\mu_{1}}, \boldsymbol{\Sigma_{0}}, \boldsymbol{\Sigma_{1}}\right)}{\partial \boldsymbol{\Sigma_{0}}}
+  &=-\frac{\sum_{i=1}^{m} \1 (y^{(i)}=0)}{2} \frac{\partial}{\partial \boldsymbol{\Sigma_{0}}} \log |\boldsymbol{\Sigma_{0}}|\\
+  &\quad -\frac{1}{2} \frac{\partial}{\partial \boldsymbol{\Sigma_{0}}} \sum_{i=1}^{m}\1 (y^{i}=0) \left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{T} \boldsymbol{\Sigma_{0}}^{-1}\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right) \\ 
+  &=-\frac{\sum_{i=1}^{m} \1 (y^{(i)}=0)}{2} \boldsymbol{\Sigma_{0}}^{-1}\\
+  &\quad +\frac{1}{2} \boldsymbol{\Sigma_{0}}^{-1}\left[\sum_{i=1}^{m}\1 (y^{(i)}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}\right] \boldsymbol{\Sigma_{0}}^{-1} \\ 
+  &=O 
+\end{aligned}
+\end{equation*}
+which yields that
+\begin{equation*}
+  \boldsymbol{\Sigma_{0}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{(i)}=0)} \sum_{i=1}^{m}\1 (y^{(i)}=0)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{0}}\right)^{\mathrm{T}}
+\end{equation*}
+With same derivation
+\begin{equation*}
+  \boldsymbol{\Sigma_{1}} = \frac{1}{\sum_{i=1}^{m} \1 (y^{(i)}=1)} \sum_{i=1}^{m}\1 (y^{(i)}=1)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)\left(\boldsymbol{x}^{(i)}-\boldsymbol{\mu_{1}}\right)^{\mathrm{T}}
+\end{equation*}
+
+
+% 2.3
+\item 
+\begin{enumerate}
+  \item Since the data is separable, there exist support vectors which $y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) = 1$.\\
+  When $y_{i}=1$, has constrain $\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b \geq 1$, and $\underset{i: y_{i}=1}\min \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star}=1$;\\
+  When $y_{i}=-1$, has constrain $\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b \leq -1$, and $\underset{i: y_{i}=-1}\max \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star}=-1$;\\
+  Therefore,
+  \begin{equation*}
+    \begin{aligned}
+      \underset{i: y_{i}=-1}\max \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star} + \underset{i: y_{i}=1}\min \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star}=0\\
+      \Rightarrow \quad b^{\star}=-\frac{1}{2}\left(\max _{i: y_{i}=-1} \boldsymbol{w}^{\star \mathbf{T}} \boldsymbol{x}_{i}+\min _{i: y_{i}=1} \boldsymbol{w}^{\star \mathbf{T}} \boldsymbol{x}_{i}\right)
+    \end{aligned}
+  \end{equation*}
+  
+  
+  
+  \item Based on the KKT condition, here exists:
+    \begin{equation*}
+      \begin{gathered}
+        \sum_{i=1}^{l} \alpha_{i}^{\star}\left[y_{i}\left(\boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+b^{\star}\right)-1\right]=0\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+ \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} b^{\star} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i}+ b^{\star} \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \alpha_{i}^{\star} y_{i} \boldsymbol{w}^{\star \mathrm{T}} \boldsymbol{x}_{i} = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+        \Rightarrow \quad \sum_{i=1}^{l} \sum_{j=1}^{l} \alpha_{i}^{\star} \alpha_{j}^{\star} y_{i} y_{j}\left\langle\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right\rangle = \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+      \end{gathered}
+    \end{equation*}
+    Then, using the equation above, it has
+    \begin{equation*}
+      \begin{aligned}
+        \frac{1}{2}\left\|\boldsymbol{w}^{\star}\right\|_{2}^{2}
+        &=\sum_{i=1}^{l} \alpha_{i}^{\star}-\frac{1}{2} \sum_{i=1}^{l} \sum_{j=1}^{l} \alpha_{i}^{\star} \alpha_{j}^{\star} y_{i} y_{j}\left\langle\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right\rangle\\
+        &=\frac{1}{2} \sum_{i=1}^{l} \alpha_{i}^{\star}\\
+      \end{aligned}
+    \end{equation*}
+\end{enumerate}
+
+%2.4
+\item 
+\begin{enumerate}
+  \item The original problem is
+  \begin{equation*}
+    \begin{aligned}
+    \begin{array}{cl}{\underset{\boldsymbol{w}, b, \boldsymbol{\xi}}{\operatorname{minimize}}} & {\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \xi_{i}} \\ 
+    {\text { subject to }} & {\xi_{i} \geq 0, \quad i=1, \ldots, l} \\
+    {} & {y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1-\xi_{i}, \quad i=1, \ldots, l}\end{array}
+    \end{aligned}
+  \end{equation*}
+  For the optimal solution, \\
+  if $y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1$, because we want to minimize $\sum_{i=1}^{l} \xi_{i}$, $\xi_{i}$ must be 0, which equals to $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$;\\
+  if $y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) < 1$, because of the constrains, $\xi_{i}$ must be $1-y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$, which equals to $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$.\\
+  This means if find the solution of the original problem, the solution of (3) in file *wa2* is found.
+  % Then generate its Lagrange function
+  % \begin{equation*}
+  %   L(\boldsymbol{w}, b, \lambda_i, \mu_i)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \xi_{i} - \sum_{i=1}^{l}\lambda_i\xi_i - \sum_{i=1}^{l}\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i})
+  % \end{equation*}
+  % The optimal solution satisfies KKT condition, with
+  % \begin{equation*}
+  %   \begin{aligned}
+  %     &C -\lambda_i -\mu_i = 0\\
+  %     &\xi_{i} \geq 0\\
+  %     &\lambda_i \xi_{i} = 0\\
+  %     &y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geq 1-\xi_{i}\\
+  %     &\mu_i(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) - 1-\xi_{i}) = 0\\
+  %     &\mu_i \leq 0\\
+  %     &\lambda_i \leq 0\\
+  %   \end{aligned}
+  % \end{equation*}
+  % when find the optimal solution, here exist
+  % \begin{equation*}
+  %   \min L(\boldsymbol{w}^*, b^*, \lambda_i^*, \mu_i^*)=\frac{1}{2}\|\boldsymbol{w}\|_{2}^{2} + C \sum_{i=1}^{l} \xi_{i}
+  % \end{equation*}
+  % When $\mu_i=0$, here exists $\lambda=C$ and $\xi_{i}=0$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \leq 0$,\\
+  % so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=0;\\
+  % When $\mu_i\neq0$, $\xi_{i}= 1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$, and $1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) = \xi_i \geq 0$,\\ 
+  % so $\ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)=$max\{0,$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$\}=$1- y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$.\\
+  Thus, the problem is equvalent to
+  \begin{equation*}
+    \underset{\boldsymbol{w}, b}{\operatorname{minimize}} \quad \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)
+  \end{equation*}
+
+
+
+
+
+  \item To prove a convex function
+  \begin{equation*}
+    \begin{aligned}
+      f(\boldsymbol{\omega} ,b) = \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)
+    \end{aligned}
+  \end{equation*}
+  proof:
+  \begin{equation*}
+    \begin{aligned}
+      &\|\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2}\|_{2}^{2} -\theta \| \boldsymbol{w}_{1}\|_{2}^{2}-(1-\theta) \|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      =& \theta^{2}\|\boldsymbol{w}_{1}\|_{2}^{2} + 2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2}+ (1-\theta)^{2} \|\boldsymbol{w}_{2}\|_{2}^{2} -\theta \| \boldsymbol{w}_{1}\|_{2}^{2}-(1-\theta) \|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      =& 2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2} - \theta(1-\theta)\|\boldsymbol{w}_{1}\|_{2}^{2} -\theta(1-\theta)\|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &2\theta(1-\theta)\boldsymbol{w}_{1}^{T} \boldsymbol{w}_{2} - \theta\|\boldsymbol{w}_{1}\|_{2}^{2} -\theta\|\boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &-\theta \|\boldsymbol{w}_{1} - \boldsymbol{w}_{2}\|_{2}^{2}\\
+      \leq &0\\
+      \Rightarrow \quad& \|\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2}\|_{2}^{2}\leq \theta \| \boldsymbol{w}_{1}\|_{2}^{2} + (1-\theta) \| \boldsymbol{w}_{2}\|_{2}^{2}
+    \end{aligned}
+  \end{equation*}
+  So $\|\boldsymbol{w}\|_{2}^{2}$ is a convex function.
+  \begin{equation*}
+    \begin{aligned}
+      &\ell \left(y_i, (\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2})^{T} \boldsymbol{x_i}+\theta b_{1}+(1-\theta) b_{2}\right)\\
+      =& \max \{1-y_i \left((\theta \boldsymbol{w}_{1}+(1-\theta) \boldsymbol{w}_{2})^{T} \boldsymbol{x_i}+\theta b_{1}+(1-\theta) b_{2}\right), 0\}\\
+      \leq &\max \{\theta-y_i (\theta \boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+\theta b_{1}) + (1-\theta)-y_i ((1-\theta) \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +(1-\theta) b_{2}), 0\}\\
+      \leq &\max \{\theta-y_i (\theta \boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+\theta b_{1}) ), 0\} + \max \{(1-\theta)-y_i ((1-\theta) \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +(1-\theta) b_{2}), 0\}\\
+      \leq &\theta \max \{1-y_i (\boldsymbol{w}_{1}^{T}\boldsymbol{x_i}+b_{1}) ), 0\} + (1-\theta)\max \{1-y_i \boldsymbol{w}_{2}^{T}\boldsymbol{x_i} +b_{2}), 0\}\\ 
+      \leq &\theta \ell \left(y_i, \boldsymbol{w}_{1}^{T} \boldsymbol{x}_{i}+b_{1}\right)+(1-\theta) \ell \left(y_i, \boldsymbol{w}_{2}^{T} \boldsymbol{x}_{i}+b_{2}\right)
+    \end{aligned}
+  \end{equation*}
+  So $\ell(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b)$ is a convex function.\\
+  The non-negative weighted sum of convex functions is still a convex function. And $C \geq 0$. \\
+  Thus the objective function $f(\boldsymbol{\omega} ,b) = \frac{1}{2}\|\boldsymbol{w}\|_{2}^{2}+C \sum_{i=1}^{l} \ell\left(y_{i}, \boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)$ is convex.
+\end{enumerate}
+
+\end{enumerate}
+  
+  % \newpage
+  
+  % \appendix
+  % \section{Source code}
+  % \label{sec:a:code}
+  % % \lstlistoflistings
+  % Source code for plotting Figure \ref{fig:1} is shown as follows.
+  % \lstinputlisting{matlabscript.m}
+  
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
