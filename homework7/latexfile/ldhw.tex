@@ -1,0 +1,101 @@
+% Homework template for Learning from Data
+% by Xiangxiang Xu <xiangxiangxu.thu@gmail.com>
+% LAST UPDATE: October 8, 2018
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+% amsmath: equation*, amssymb: mathbb, amsthm: proof
+\usepackage{moreenum}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % toprule
+\usepackage[mathcal]{eucal}
+\usepackage{dsfont}
+\usepackage[numbered,framed]{matlab-prettifier}
+\input{lddef}
+
+\lstset{
+  style              = Matlab-editor,
+  captionpos         =b,
+  basicstyle         = \mlttfamily,
+  escapechar         = ",
+  mlshowsectionrules = true,
+}
+\begin{document}
+\courseheader
+
+
+
+\newcounter{hwcnt}
+\setcounter{hwcnt}{3} % set to the times of Homework
+
+\begin{center}
+  \underline{\bf Programming Homework 4}%\thehwcnt} \\
+\end{center}
+\begin{flushleft}
+  TIAN Chenyu\hfill
+  \today
+\end{flushleft}
+\hrule
+
+\vspace{2em}
+\setlist[enumerate,1]{label=\thehwcnt.\arabic*.}
+\setlist[enumerate,2]{label=(\alph*)}
+\setlist[enumerate,3]{label=\roman*.}
+\setlist[enumerate,4]{label=\greek*)}
+
+\flushleft
+\rule{\textwidth}{1pt}
+\begin{itemize}
+\item {\bf Acknowledgments: \/} 
+  This template takes some materials from course CSE 547/Stat 548 of Washington University: \small{\url{https://courses.cs.washington.edu/courses/cse547/17sp/index.html}}.
+\item {\bf Collaborators: \/}
+  I finish this homework by myself.
+  % \begin{itemize}
+  % \item 1.2 (b) was solved with the help from \underline{\hspace{3em}}.
+  % \item Discussion with \underline{\hspace{3em}} helped me finishing 1.3.
+  % \end{itemize}
+\end{itemize}
+\rule{\textwidth}{1pt}
+
+\vspace{2em}
+
+% You may use \texttt{enumerate} to generate answers for each question:
+
+% 4.1
+\begin{enumerate}
+  \setlength{\itemsep}{4\parskip}
+\item 
+The matrix of learned reward matrix is shown below.
+
+It is easy to see the most different part is in the (3, 0), where the reward is 2.
+May because the part is in the corner and rarely visited leading to some bias.
+
+% 4.2
+\item My DQN is work, but it really takes more time than q_table because . But it is more accurate.
+By the way, it is really hard to train for lacking of deep learning experience.
+At each iteration of DQN, a mini-batch of states, actions, rewards, and next states are sampled from the replay memory as observations to train the Q-network, which approximates the action-value function.
+In this discrete senario, I think Q learning is more efficient. But DQN is more suitable to
+complex continuous tasks.
+
+
+\end{enumerate}
+  
+  % \newpage
+  
+  % \appendix
+  % \section{Source code}
+  % \label{sec:a:code}
+  % % \lstlistoflistings
+  % Source code for plotting Figure \ref{fig:1} is shown as follows.
+  % \lstinputlisting{matlabscript.m}
+  
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
