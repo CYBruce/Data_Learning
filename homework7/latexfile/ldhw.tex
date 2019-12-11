@@ -31,7 +31,7 @@
 
 
 \newcounter{hwcnt}
-\setcounter{hwcnt}{3} % set to the times of Homework
+\setcounter{hwcnt}{4} % set to the times of Homework
 
 \begin{center}
   \underline{\bf Programming Homework 4}%\thehwcnt} \\
@@ -66,23 +66,54 @@
 
 % You may use \texttt{enumerate} to generate answers for each question:
 
-% 4.1
+% 4.2
 \begin{enumerate}
   \setlength{\itemsep}{4\parskip}
-\item 
-The matrix of learned reward matrix is shown below.
-
-It is easy to see the most different part is in the (3, 0), where the reward is 2.
-May because the part is in the corner and rarely visited leading to some bias.
+  \item The code is in the \emph{Q\_learning.py}.
+  \item 
+  The matrix of learned reward is shown in \ref{fig:1}. The MSE is 0.08.
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width = 0.8\textwidth]{../distribution.png}
+    \caption{Matrix Distribution}
+    \label{fig:1}
+  \end{figure}
+  \newline The most different part is (3, 0), where the reward is 2 but the learned reward is 1.23.
+  \newline Explanation: It is obvious that (3, 0) is near the trap. In the beginning, because of random action, the mouse is easy to get a negative reward if starts from here.
+  As the $\epsilon$ getting smaller afterwards, then (3,0) is rarely visited for a low Q\_value. 
+  Therefore, small samples of Q\_value in (3, 0) leads to some estimation bias.
+\newpage
 
 % 4.2
-\item My DQN is work, but it really takes more time than q_table because . But it is more accurate.
-By the way, it is really hard to train for lacking of deep learning experience.
-At each iteration of DQN, a mini-batch of states, actions, rewards, and next states are sampled from the replay memory as observations to train the Q-network, which approximates the action-value function.
-In this discrete senario, I think Q learning is more efficient. But DQN is more suitable to
-complex continuous tasks.
+  \item I used Keras 2.3.0 to build the neural network by adding methods in the origin \emph{Agent} class. 
+  At each iteration of DQN, a mini-batch of states, actions, rewards, and next states are sampled from the replay memory as observations to train the Q-network, which approximates the Q function.
+  \lstinputlisting[firstline=109,lastline=122, firstnumber=0]{../dqn_10_10.py}
+  
+  \begin{figure}
+    \begin{subfigure}[H]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{../10_10_dqn.png}
+      \caption{The Learned route by DQN}
+      \label{fig:2}
+    \end{subfigure}
+    %
+    \begin{subfigure}[H]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{../10_10_q_table.png}
+      \caption{The Learned route by Q-table}
+      \label{fig:3}
+    \end{subfigure}
+  \end{figure}
+  DQN works and finds some different routes from the Q\_table method as shown in the \ref{fig:2}.
+  \newline There are some comparisons between 2 methods:
+  \begin{enumerate}
+    \item In this 10*10 senario, DQN takes much more time to train the agent than q-table. 
+    \item It is more difficult to tune the DQN hyperparameters such as netword architecture and batch size. But Q\_table is only have to tune learning rate.
+    \item The solution of Q\_table is stable. But the learned solution of DQN can be different everytime.
+    \item The DQN learned actions sometimes can fall into dead loop. For example, its action can be go left then go right, repeat this pair of actions forever. So the maximum steps need to be set to jump out of the loop.
+    \item In this discrete senario, I think Q learning is more efficient. But DQN is more flexible to complex tasks with continous states and actions.
+  \end{enumerate}
 
-
+  The source code could be found in \emph{dqn\_10\_10.py}. Here are the core codes:
+  \lstinputlisting[firstline=188,lastline=209, firstnumber=0]{../dqn_10_10.py}
 \end{enumerate}
   
   % \newpage
