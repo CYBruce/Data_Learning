@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: sample-workshop.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: sample-ref.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty address in chauvin2013backpropagation
+Warning--no journal in guo2018predictor
+Warning--no number and no volume in guo2018predictor
+Warning--page numbers missing in both pages and numpages fields in guo2018predictor
+Warning--empty publisher in nikravesh2016mobile
+Warning--empty address in nikravesh2016mobile
+Warning--empty address in vapnik2013nature
+You've used 11 entries,
+            5719 wiz_defined-function locations,
+            1515 strings with 18589 characters,
+and the built_in function-call counts, 13122 in all, are:
+= -- 1810
+> -- 459
+< -- 0
++ -- 151
+- -- 156
+* -- 914
+:= -- 1323
+add.period$ -- 57
+call.type$ -- 11
+change.case$ -- 76
+chr.to.int$ -- 11
+cite$ -- 18
+duplicate$ -- 1101
+empty$ -- 778
+format.name$ -- 188
+if$ -- 3245
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 41
+newline$ -- 127
+num.names$ -- 88
+pop$ -- 391
+preamble$ -- 1
+purify$ -- 175
+quote$ -- 0
+skip$ -- 371
+stack$ -- 0
+substring$ -- 998
+swap$ -- 121
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 188
+warning$ -- 7
+while$ -- 88
+width$ -- 0
+write$ -- 225
+(There were 7 warnings)

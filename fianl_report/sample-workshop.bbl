@@ -1,0 +1,178 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{11}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Chauvin and Rumelhart}{Chauvin and
+  Rumelhart}{2013}]%
+        {chauvin2013backpropagation}
+\bibfield{author}{\bibinfo{person}{Yves Chauvin} {and} \bibinfo{person}{David~E
+  Rumelhart}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Backpropagation: theory, architectures, and
+  applications}}.
+\newblock \bibinfo{publisher}{Psychology Press}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Cleveland}{Cleveland}{1979}]%
+        {cleveland1979robust}
+\bibfield{author}{\bibinfo{person}{William~S Cleveland}.}
+  \bibinfo{year}{1979}\natexlab{}.
+\newblock \showarticletitle{Robust locally weighted regression and smoothing
+  scatterplots}.
+\newblock \bibinfo{journal}{\emph{Journal of the American statistical
+  association}} \bibinfo{volume}{74}, \bibinfo{number}{368}
+  (\bibinfo{year}{1979}), \bibinfo{pages}{829--836}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guo, Krishnan, and Polak}{Guo
+  et~al\mbox{.}}{2017}]%
+        {guo2017influence}
+\bibfield{author}{\bibinfo{person}{Fangce Guo}, \bibinfo{person}{Rajesh
+  Krishnan}, {and} \bibinfo{person}{John Polak}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{The influence of alternative data smoothing
+  prediction techniques on the performance of a two-stage short-term urban
+  travel time prediction framework}.
+\newblock \bibinfo{journal}{\emph{Journal of Intelligent Transportation
+  Systems}} \bibinfo{volume}{21}, \bibinfo{number}{3} (\bibinfo{year}{2017}),
+  \bibinfo{pages}{214--226}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Guo, Polak, and Krishnamoorthy}{Guo
+  et~al\mbox{.}}{2018}]%
+        {guo2018predictor}
+\bibfield{author}{\bibinfo{person}{Fangce Guo}, \bibinfo{person}{John~W Polak},
+  {and} \bibinfo{person}{R Krishnamoorthy}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Predictor fusion for short-term traffic
+  forecasting}.
+\newblock  (\bibinfo{year}{2018}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Habtemichael and Cetin}{Habtemichael and
+  Cetin}{2016}]%
+        {habtemichael2016short}
+\bibfield{author}{\bibinfo{person}{Filmon~G Habtemichael} {and}
+  \bibinfo{person}{Mecit Cetin}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Short-term traffic flow rate forecasting based on
+  identifying similar traffic patterns}.
+\newblock \bibinfo{journal}{\emph{Transportation research Part C: emerging
+  technologies}}  \bibinfo{volume}{66} (\bibinfo{year}{2016}),
+  \bibinfo{pages}{61--78}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Ke, Zheng, Yang, and Chen}{Ke
+  et~al\mbox{.}}{2017}]%
+        {ke2017short}
+\bibfield{author}{\bibinfo{person}{Jintao Ke}, \bibinfo{person}{Hongyu Zheng},
+  \bibinfo{person}{Hai Yang}, {and} \bibinfo{person}{Xiqun~Michael Chen}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Short-term forecasting of passenger demand under
+  on-demand ride services: A spatio-temporal deep learning approach}.
+\newblock \bibinfo{journal}{\emph{Transportation Research Part C: Emerging
+  Technologies}}  \bibinfo{volume}{85} (\bibinfo{year}{2017}),
+  \bibinfo{pages}{591--608}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Li, Pan, Wu, Qi, Li, Zhang, Zhang, and
+  Wang}{Li et~al\mbox{.}}{2012}]%
+        {li2012prediction}
+\bibfield{author}{\bibinfo{person}{Xiaolong Li}, \bibinfo{person}{Gang Pan},
+  \bibinfo{person}{Zhaohui Wu}, \bibinfo{person}{Guande Qi},
+  \bibinfo{person}{Shijian Li}, \bibinfo{person}{Daqing Zhang},
+  \bibinfo{person}{Wangsheng Zhang}, {and} \bibinfo{person}{Zonghui Wang}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Prediction of urban human mobility using
+  large-scale taxi traces and its applications}.
+\newblock \bibinfo{journal}{\emph{Frontiers of Computer Science}}
+  \bibinfo{volume}{6}, \bibinfo{number}{1} (\bibinfo{year}{2012}),
+  \bibinfo{pages}{111--121}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Nikravesh, Ajila, Lung, and Ding}{Nikravesh
+  et~al\mbox{.}}{2016}]%
+        {nikravesh2016mobile}
+\bibfield{author}{\bibinfo{person}{Ali~Yadavar Nikravesh},
+  \bibinfo{person}{Samuel~A Ajila}, \bibinfo{person}{Chung-Horng Lung}, {and}
+  \bibinfo{person}{Wayne Ding}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Mobile network traffic prediction using MLP, MLPWD,
+  and SVM}. In \bibinfo{booktitle}{\emph{2016 IEEE International Congress on
+  Big Data (BigData Congress)}}. IEEE, \bibinfo{pages}{402--409}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Qiu, Li, and Liu}{Qiu et~al\mbox{.}}{2016}]%
+        {qiu2016integrated}
+\bibfield{author}{\bibinfo{person}{Han Qiu}, \bibinfo{person}{Ruimin Li}, {and}
+  \bibinfo{person}{Hao Liu}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Integrated model for traffic flow forecasting under
+  rainy conditions}.
+\newblock \bibinfo{journal}{\emph{Journal of Advanced Transportation}}
+  \bibinfo{volume}{50}, \bibinfo{number}{8} (\bibinfo{year}{2016}),
+  \bibinfo{pages}{1754--1769}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vapnik}{Vapnik}{2013}]%
+        {vapnik2013nature}
+\bibfield{author}{\bibinfo{person}{Vladimir Vapnik}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{The nature of statistical learning
+  theory}}.
+\newblock \bibinfo{publisher}{Springer science \& business media}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vlahogianni}{Vlahogianni}{2015}]%
+        {vlahogianni2015optimization}
+\bibfield{author}{\bibinfo{person}{Eleni~I Vlahogianni}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Optimization of traffic forecasting: Intelligent
+  surrogate modeling}.
+\newblock \bibinfo{journal}{\emph{Transportation Research Part C: Emerging
+  Technologies}}  \bibinfo{volume}{55} (\bibinfo{year}{2015}),
+  \bibinfo{pages}{14--23}.
+\newblock
+
+
+\end{thebibliography}
