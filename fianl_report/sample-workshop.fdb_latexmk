@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex sample-workshop"] 1577625333 "sample-workshop.aux" "sample-workshop.bbl" "sample-workshop" 1577676029
+["bibtex sample-workshop"] 1577625333 "sample-workshop.aux" "sample-workshop.bbl" "sample-workshop" 1577692016
   "/usr/local/texlive/2019/texmf-dist/bibtex/bst/acmart/ACM-Reference-Format.bst" 1556907602 83546 17c2ff39b1f03175cef11378a7497b73 ""
   "sample-ref.bib" 1577609326 14278 ff38e6630db3182342483ca211f5ebd9 ""
-  "sample-workshop.aux" 1577676028 6929 a76a357b9523dc0ee07d09eb32531882 "pdflatex"
+  "sample-workshop.aux" 1577692015 6929 a76a357b9523dc0ee07d09eb32531882 "pdflatex"
   (generated)
   "sample-workshop.blg"
   "sample-workshop.bbl"
-["pdflatex"] 1577676025 "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.tex" "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf" "sample-workshop" 1577676029
-  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.aux" 1577676028 6929 a76a357b9523dc0ee07d09eb32531882 ""
-  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.tex" 1577676024 29517 6716c99583d5ef772ba885664e3c2eb4 ""
+["pdflatex"] 1577692013 "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.tex" "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf" "sample-workshop" 1577692016
+  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.aux" 1577692015 6929 a76a357b9523dc0ee07d09eb32531882 ""
+  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.tex" 1577692012 29349 4f4a6f9e50fbfac2ac329296ceb6dc7e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc" 1490131464 2921 8ca0eb0831f9bc5da080d3697cfe67bf ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
@@ -225,15 +225,15 @@
   "figure1.png" 1577578820 33195 94b677781ddc8a77a6b184506f9d9f25 ""
   "figure2.png" 1577578841 818048 4e379c207935fe1564ea32ebb9ac65df ""
   "figure3.png" 1577578848 499646 b4b396acb0d3368a9eb3118fcc4e6973 ""
-  "sample-workshop.aux" 1577676028 6929 a76a357b9523dc0ee07d09eb32531882 "pdflatex"
+  "sample-workshop.aux" 1577692015 6929 a76a357b9523dc0ee07d09eb32531882 "pdflatex"
   "sample-workshop.bbl" 1577625334 7556 aa8bcd8db7c7d01ee7444cc8e2433cb4 "bibtex sample-workshop"
-  "sample-workshop.out" 1577676028 2191 f708473b5e0d2ee92e62cd584d6c4edc "pdflatex"
-  "sample-workshop.tex" 1577676024 29517 6716c99583d5ef772ba885664e3c2eb4 ""
+  "sample-workshop.out" 1577692015 2191 f708473b5e0d2ee92e62cd584d6c4edc "pdflatex"
+  "sample-workshop.tex" 1577692012 29349 4f4a6f9e50fbfac2ac329296ceb6dc7e ""
   "zone1.png" 1577590667 177837 583e41469dda6d9a63baedda1583f0a3 ""
   (generated)
-  "sample-workshop.pdf"
-  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf"
-  "sample-workshop.log"
   "sample-workshop.aux"
+  "sample-workshop.log"
+  "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf"
   "sample-workshop.out"
   "/Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.log"
+  "sample-workshop.pdf"

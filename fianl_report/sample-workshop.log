@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.16)  30 DEC 2019 11:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.9.16)  30 DEC 2019 15:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1080,13 +1080,13 @@ Package rerunfilecheck Info: File `sample-workshop.out' has not changed.
 Here is how much of TeX's memory you used:
  18547 strings out of 492616
  281339 string characters out of 6129481
- 415107 words of memory out of 5000000
+ 414107 words of memory out of 5000000
  21630 multiletter control sequences out of 15000+600000
  155306 words of font info for 270 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  60i,11n,94p,1174b,683s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_25tcsq.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinBiolinumTI.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/fxlri-5letters.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/fxlri-7letters.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/txfonts/rtxr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/newtx/zxlri.pfb>
-Output written on /Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf (6 pages, 6114055 bytes).
+Output written on /Users/mac/Desktop/Data_Learning/fianl_report/sample-workshop.pdf (6 pages, 6113841 bytes).
 PDF statistics:
  247 PDF objects out of 1000 (max. 8388607)
  193 compressed objects within 2 object streams
