@@ -1,5 +1,5 @@
 # Learing from Data
-Machine learning course repo opened in TBSI 2019 autumn.
+Machine learning course repo opened taught by [Yang Li](http://yangli-feasibility.com/home/) in TBSI 2019 autumn.
 
 ## [Syllabus](./slides)
 - Introduction
