@@ -1,20 +1,35 @@
 # Learing from Data
 Machine learning course repo opened in TBSI 2019 autumn.
 
-## Syllabus
-
+## [Syllabus](./slides)
 - Introduction
-- Supervised learning I
-  - linear regression
-  - logistic regression
-- Supervised learning II
-  - generalized linear model
-  - generative model
-  - support vector machine
+- Linear regression & logistic regression
+- Generalized linear models I
+  - Exponential family
+  - Naive bayes
+- Generalized linear models II
+  - Gaussian discriminant analysis
+  - Naive bayes
+- Support vector machine
+  - Review: Percetron algorithm
+  - SVM
+  - Kernel SVM
+- Deep neural networks
+- K-Means clustering & PCA
+- ICA, CCA & HGR maximal correlation
+- Reinforcement learning
+- Mixture of Gaussians & EM
+- Model selection & regularization
+- Learning theory
+
 
 ## homework
 
-- programming: gradient descent & logistic regression
-- writing homework 1
-- programming: naive bayes
-- writing homework 1
+- programming homeworks
+  - [Gradient descent & logistic regression](./homework1)
+  - [Naive bayes](./homework3)
+  - [Backpropogation neural network](./homework5)
+  - [Reinforcement learning](./homework7)
+- writing homeworks
+All homework directories have problem descriptions and solutions.
+
