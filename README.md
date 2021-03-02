@@ -31,5 +31,5 @@ Machine learning course repo opened taught by [Yang Li](http://yangli-feasibilit
   - [Backpropogation neural network](./homework5)
   - [Reinforcement learning](./homework7)
 - writing homeworks
-All homework directories have problem descriptions and solutions.
+  - All homework directories have problem descriptions and solutions.
 
